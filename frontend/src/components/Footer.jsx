@@ -20,47 +20,6 @@ const FOOTER_LINKS = {
   ],
 }
 
-/* Premium satellite icon with glowing antenna */
-function SatIcon() {
-  return (
-    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
-      className="w-8 h-8" aria-hidden="true">
-      <defs>
-        <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#1E3E62"/>
-          <stop offset="100%" stopColor="#0B1626"/>
-        </linearGradient>
-        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur stdDeviation="2" result="blur"/>
-          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
-        </filter>
-      </defs>
-
-      {/* Left Solar Panel */}
-      <rect x="2" y="12" width="8" height="6" rx="1" fill="url(#panelGrad)" stroke="#4D96FF" strokeWidth="0.5"/>
-      <rect x="10" y="11" width="4" height="8" rx="1" fill="#1A1A25" stroke="#4D96FF" strokeWidth="0.5"/>
-      <line x1="2" y1="15" x2="8" y2="15" stroke="#4D96FF" strokeWidth="0.3" opacity="0.6"/>
-
-      {/* Right Solar Panel */}
-      <rect x="22" y="12" width="8" height="6" rx="1" fill="url(#panelGrad)" stroke="#4D96FF" strokeWidth="0.5"/>
-      <rect x="20" y="11" width="4" height="8" rx="1" fill="#1A1A25" stroke="#4D96FF" strokeWidth="0.5"/>
-      <line x1="24" y1="15" x2="30" y2="15" stroke="#4D96FF" strokeWidth="0.3" opacity="0.6"/>
-
-      {/* Main Body */}
-      <rect x="11" y="10" width="10" height="10" rx="2" fill="#1A1A25" stroke="#4D96FF" strokeWidth="1"/>
-
-      {/* Antenna */}
-      <circle cx="16" cy="8" r="1.5" fill="#E8941A" filter="url(#glow)">
-        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/>
-      </circle>
-      <line x1="16" y1="8" x2="16" y2="4" stroke="#E8941A" strokeWidth="1"/>
-
-      {/* Glowing ring */}
-      <circle cx="16" cy="16" r="14" stroke="#E8941A" strokeWidth="0.5" strokeDasharray="3 2" opacity="0.4"/>
-    </svg>
-  )
-}
-
 export default function Footer() {
   return (
     <footer className="relative text-white/70 pt-20 pb-12 overflow-hidden border-t border-white/[0.06]">
@@ -78,10 +37,14 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-5">
-              <SatIcon />
+              <img
+                src="logo.png"
+                alt="TelEye"
+                className="w-10 h-10 object-contain"
+              />
               <div>
                 <span className="text-2xl font-black tracking-tight text-white">
-                  Tell<span className="text-emerald-400">Eye</span>
+                  Tel<span className="text-emerald-400">Eye</span>
                 </span>
                 <div className="text-[10px] font-medium text-emerald-400/70 uppercase tracking-[0.2em]">Satellite Intelligence</div>
               </div>
