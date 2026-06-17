@@ -1,0 +1,60 @@
+{
+  "experiment": "log1p",
+  "transform": "log1p",
+  "inverse_transform": "expm1",
+  "bands": [
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B8A",
+    "B9",
+    "B11",
+    "B12"
+  ],
+  "target": "soc",
+  "data_path": "/kaggle/input/datasets/ghadabousmid/soc-dataset/soc_noisy.csv",
+  "seed": 42,
+  "n_train": 44947,
+  "n_val": 9632,
+  "n_test": 9632,
+  "in_dim": 12,
+  "threshold": 7.0,
+  "blend_width": 1.0,
+  "batch_size": 256,
+  "epochs": 300,
+  "lr": 0.0003,
+  "min_delta": 0.0001,
+  "patience": 30,
+  "best_epoch": 172,
+  "best_val_r2": 0.936572,
+  "model_weights": "log1p/best_model.pt",
+  "scaler_path": "log1p/scaler.pkl",
+  "test_metrics": {
+    "overall": {
+      "r2": 0.935469,
+      "rmse": 3.174567,
+      "bias": -0.166829,
+      "rpd": 3.936539,
+      "rpiq": 1.050442
+    },
+    "mineral": {
+      "r2": 0.535415,
+      "rmse": 1.03082,
+      "bias": -0.111776,
+      "rpd": 1.467126,
+      "rpiq": 1.746183
+    },
+    "organic": {
+      "r2": 0.803922,
+      "rmse": 7.25237,
+      "bias": -0.426478,
+      "rpd": 2.258323,
+      "rpiq": 4.486809
+    }
+  }
+}

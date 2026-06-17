@@ -21,7 +21,9 @@ const NAV_LINKS = [
   { label: 'Solutions',    labelAr: 'الحلول',        to: '/#solutions' },
   { label: 'Tarifs',       labelAr: 'الأسعار',       to: '/pricing' },
   { label: 'Soil Academy', labelAr: 'أكاديمية التربة', to: '/academy' },
-  { label: 'Contact',      labelAr: 'تواصل',         to: '/#contact' },
+  { label: 'Contact',      labelAr: 'تواصل',         to: '/contact' },
+ 
+  
 ]
 
 export default function Navbar({ lang = 'fr', onLangChange }) {
@@ -63,17 +65,22 @@ export default function Navbar({ lang = 'fr', onLangChange }) {
           {/* ── Logo ─────────────────────────────────────────── */}
           <Link to="/" className="flex items-center gap-2 group">
             <motion.div
-              whileHover={{ rotate: 20 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: 'spring', stiffness: 300 }}
+              className="flex items-center gap-2"
             >
-              <TellEyeLogo />
+              <img
+                src="/logo.png"
+                alt="TellEye Logo"
+                style={{ height: 38, width: 'auto', objectFit: 'contain' }}
+              />
+              <span
+                className="text-xl font-bold text-white"
+                style={{ fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}
+              >
+                Tell<span className="text-amber-telleye">Eye</span>
+              </span>
             </motion.div>
-            <span
-              className="text-xl font-bold text-white"
-              style={{ fontFamily: 'var(--font-heading)', letterSpacing: '-0.02em' }}
-            >
-              Tell<span className="text-amber-telleye">Eye</span>
-            </span>
           </Link>
 
           {/* ── Desktop nav links ─────────────────────────────── */}
