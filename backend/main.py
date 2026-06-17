@@ -87,6 +87,7 @@ app.add_middleware(
         "http://localhost:5173",
         "http://localhost:3000",
         "https://telleye-production.up.railway.app",
+        "https://tell-apzak3ien-houyems-projects-bd8958be.vercel.app",
         "https://*.vercel.app",
     ],
     allow_credentials=True,
