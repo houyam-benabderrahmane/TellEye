@@ -10,7 +10,8 @@ import axios from 'axios'
 
 const AuthContext = createContext(null)
 
-const API = 'http://localhost:8000/api'
+
+const API = (import.meta.env.VITE_API_URL || 'http://localhost:8000') + '/api'
 
 export function AuthProvider({ children }) {
   const [token, setToken]   = useState(() => localStorage.getItem('telleye_token') || null)
