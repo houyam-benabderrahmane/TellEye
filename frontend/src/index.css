@@ -1,3 +1,8 @@
+/* 1. Imports FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;600;700&display=swap');
+
+/* 2. Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,8 +14,8 @@
   --color-cream:    #F9F6F0;
   --color-sage:     #EAF2EB;
   --color-charcoal: #1C1C1C;
-  --font-heading: 'Plus Jakarta Sans', Inter, sans-serif;
-  --font-body:    Inter, sans-serif;
+  --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', Inter, sans-serif;
+  --font-body:    'Inter', sans-serif;
   --font-arabic:  'Noto Sans Arabic', sans-serif;
 }
 
@@ -79,3 +84,132 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f1f1f1; }
 ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 3px; }
+
+
+
+/* Algeria satellite imagery gradients */
+.algeria-hero-gradient {
+  background: radial-gradient(circle at top left, rgba(232, 148, 26, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.2) 0%, transparent 50%),
+              linear-gradient(135deg, #020617 0%, #0f172a 50%, #061a14 100%);
+}
+
+.algeria-section-gradient {
+  background: radial-gradient(circle at 30% 20%, rgba(232, 148, 26, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 70% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 45%),
+              #020617;
+}
+
+.algeria-glow-overlay {
+  background: radial-gradient(circle at 50% 50%, rgba(232, 148, 26, 0.1) 0%, transparent 60%),
+              radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+              rgba(2, 6, 23, 0.95);
+}
+
+/* Custom keyframe animations for the TellEye redesign */
+@keyframes antennaPulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glint {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.7; }
+}
+
+.animate-antenna-pulse {
+  animation: antennaPulse 2s infinite ease-in-out;
+  transform-origin: center;
+}
+
+.animate-scanline {
+  animation: scanline 8s infinite linear;
+}
+
+.animate-glint {
+  animation: glint 4s infinite ease-in-out;
+}
+
+/* Premium gradient overlays for Algeria theme */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 20s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Premium glassmorphism utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.glass-card {
+  background: rgba(10, 20, 16, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(16, 185, 129, 0.12);
+  box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Premium scanning beam animation */
+@keyframes scanBeam {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 0.8; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-scan-beam {
+  animation: scanBeam 2.5s ease-in-out infinite;
+}
+
+/* Premium glow pulse */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px 0 rgba(16, 185, 129, 0.15); }
+  50% { box-shadow: 0 0 40px 0 rgba(16, 185, 129, 0.35); }
+}
+
+.animate-glow-pulse {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* Premium scroll progress bar */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.scroll-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #10b981, #4dd9b8, #10b981);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+}

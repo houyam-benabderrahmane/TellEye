@@ -20,68 +20,99 @@ const FOOTER_LINKS = {
   ],
 }
 
-/* Minimal satellite icon — matches the page's SVG style */
+/* Premium satellite icon with glowing antenna */
 function SatIcon() {
   return (
-    <svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
-      className="w-5 h-5" aria-hidden="true">
-      <rect x="7" y="6" width="6" height="8" rx="1.5" stroke="#34d399" strokeWidth="1.2"/>
-      <line x1="7"  y1="10" x2="2"  y2="10" stroke="#34d399" strokeWidth="1"/>
-      <line x1="13" y1="10" x2="18" y2="10" stroke="#34d399" strokeWidth="1"/>
-      <rect x="1"  y="8.5" width="4" height="3" rx="0.8" fill="#34d399" opacity="0.35"/>
-      <rect x="15" y="8.5" width="4" height="3" rx="0.8" fill="#34d399" opacity="0.35"/>
-      <line x1="10" y1="6"  x2="10" y2="3"  stroke="#34d399" strokeWidth="1"/>
-      <circle cx="10" cy="2.5" r="1.2" fill="#34d399" opacity="0.8">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
+      className="w-8 h-8" aria-hidden="true">
+      <defs>
+        <linearGradient id="panelGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#1E3E62"/>
+          <stop offset="100%" stopColor="#0B1626"/>
+        </linearGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2" result="blur"/>
+          <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+        </filter>
+      </defs>
+
+      {/* Left Solar Panel */}
+      <rect x="2" y="12" width="8" height="6" rx="1" fill="url(#panelGrad)" stroke="#4D96FF" strokeWidth="0.5"/>
+      <rect x="10" y="11" width="4" height="8" rx="1" fill="#1A1A25" stroke="#4D96FF" strokeWidth="0.5"/>
+      <line x1="2" y1="15" x2="8" y2="15" stroke="#4D96FF" strokeWidth="0.3" opacity="0.6"/>
+
+      {/* Right Solar Panel */}
+      <rect x="22" y="12" width="8" height="6" rx="1" fill="url(#panelGrad)" stroke="#4D96FF" strokeWidth="0.5"/>
+      <rect x="20" y="11" width="4" height="8" rx="1" fill="#1A1A25" stroke="#4D96FF" strokeWidth="0.5"/>
+      <line x1="24" y1="15" x2="30" y2="15" stroke="#4D96FF" strokeWidth="0.3" opacity="0.6"/>
+
+      {/* Main Body */}
+      <rect x="11" y="10" width="10" height="10" rx="2" fill="#1A1A25" stroke="#4D96FF" strokeWidth="1"/>
+
+      {/* Antenna */}
+      <circle cx="16" cy="8" r="1.5" fill="#E8941A" filter="url(#glow)">
         <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/>
       </circle>
+      <line x1="16" y1="8" x2="16" y2="4" stroke="#E8941A" strokeWidth="1"/>
+
+      {/* Glowing ring */}
+      <circle cx="16" cy="16" r="14" stroke="#E8941A" strokeWidth="0.5" strokeDasharray="3 2" opacity="0.4"/>
     </svg>
   )
 }
 
 export default function Footer() {
   return (
-    <footer className="relative text-white/60 pt-16 pb-8 border-t border-white/[0.06]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <footer className="relative text-white/70 pt-20 pb-12 overflow-hidden border-t border-white/[0.06]">
+      {/* Premium Algeria-themed background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a111c] to-[#050b1c]" />
+        <div className="absolute inset-0 opacity-10 [background-image:radial-gradient(ellipse_at_50%_50%,rgba(232,148,26,0.2)_0%,transparent_50%)]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Top grid ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/[0.06]">
 
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
+            <div className="flex items-center gap-3 mb-5">
               <SatIcon />
-              <span className="text-white text-lg font-black tracking-tight">
-                Tell<span style={{ color: '#34d399' }}>Eye</span>
-              </span>
+              <div>
+                <span className="text-2xl font-black tracking-tight text-white">
+                  Tell<span className="text-emerald-400">Eye</span>
+                </span>
+                <div className="text-[10px] font-medium text-emerald-400/70 uppercase tracking-[0.2em]">Satellite Intelligence</div>
+              </div>
             </div>
 
-            <p className="text-xs leading-relaxed text-white/40 mb-5">
+            <p className="text-sm leading-relaxed text-white/50 mb-6">
               Intelligence du sol pour l'Algérie. Cartographie SOC, argile, pH et texture sans campagnes terrain.
             </p>
 
-            {/* Validated badge — matches LandingPage pill style */}
-            <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-semibold"
-              style={{
-                border: '1px solid rgba(52,211,153,0.2)',
-                background: 'rgba(52,211,153,0.07)',
-                color: '#6ee7b7',
-              }}
-            >
-              <span
-                className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                style={{ background: '#34d399', boxShadow: '0 0 6px rgba(52,211,153,0.8)' }}
-              />
+            {/* Premium validated badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] border border-emerald-500/20 bg-emerald-500/10 backdrop-blur-sm shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+              <span className="h-2 w-2 rounded-full flex-shrink-0 bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
               Validé par ASAL
             </div>
 
-            {/* Stat pills */}
-          
+            {/* Premium stat pills */}
+            <div className="mt-6 flex gap-3">
+              <div className="text-center px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.05]">
+                <div className="text-lg font-black text-white">58</div>
+                <div className="text-[9px] text-white/40 uppercase tracking-[0.15em]">Wilayas</div>
+              </div>
+              <div className="text-center px-3 py-2 rounded-lg bg-white/[0.03] border border-white/[0.05]">
+                <div className="text-lg font-black text-white">24h</div>
+                <div className="text-[9px] text-white/40 uppercase tracking-[0.15em]">Delivery</div>
+              </div>
+            </div>
           </div>
 
           {/* Plateforme */}
           <div>
-            <h4 className="text-white font-bold text-[10px] mb-4 uppercase tracking-[0.22em]">
+            <h4 className="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] border-b border-white/10 pb-2">
               Plateforme
             </h4>
             <ul className="space-y-3">
@@ -89,8 +120,11 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     to={l.to}
-                    className="text-sm text-white/45 hover:text-emerald-300 transition-colors duration-200"
+                    className="text-sm text-white/45 hover:text-emerald-300 transition-all duration-200 group flex items-center gap-2"
                   >
+                    <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </span>
                     {l.label}
                   </Link>
                 </li>
@@ -100,7 +134,7 @@ export default function Footer() {
 
           {/* Segments */}
           <div>
-            <h4 className="text-white font-bold text-[10px] mb-4 uppercase tracking-[0.22em]">
+            <h4 className="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] border-b border-white/10 pb-2">
               Segments
             </h4>
             <ul className="space-y-3">
@@ -108,8 +142,11 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     to={l.to}
-                    className="text-sm text-white/45 hover:text-emerald-300 transition-colors duration-200"
+                    className="text-sm text-white/45 hover:text-emerald-300 transition-all duration-200 group flex items-center gap-2"
                   >
+                    <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </span>
                     {l.label}
                   </Link>
                 </li>
@@ -117,18 +154,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Partenaires + contact */}
+          {/* Partenaires */}
           <div>
-            <h4 className="text-white font-bold text-[10px] mb-4 uppercase tracking-[0.22em]">
+            <h4 className="text-white font-bold text-[10px] mb-6 uppercase tracking-[0.3em] border-b border-white/10 pb-2">
               Partenaires
             </h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-6">
               {FOOTER_LINKS.partners.map((l) => (
                 <li key={l.label}>
                   <a
                     href={l.to}
-                    className="text-sm text-white/45 hover:text-emerald-300 transition-colors duration-200"
+                    className="text-sm text-white/45 hover:text-emerald-300 transition-all duration-200 group flex items-center gap-2"
                   >
+                    <span className="w-0 group-hover:w-2 transition-all duration-300 overflow-hidden">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                    </span>
                     {l.label}
                   </a>
                 </li>
@@ -136,19 +176,33 @@ export default function Footer() {
             </ul>
 
             {/* Contact block */}
-            <div className="mt-6 pt-5 border-t border-white/[0.06] space-y-1.5">
-              <p className="text-xs text-white/30">contact@telleye.dz</p>
-              <p className="text-xs text-white/30">Algérie, Constantine</p>
+            <div className="pt-5 border-t border-white/10">
+              <h4 className="text-white font-bold text-[10px] mb-4 uppercase tracking-[0.3em]">
+                Contact
+              </h4>
+              <div className="space-y-2 text-sm text-white/50">
+                <div className="flex items-center gap-3">
+                  <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                  <a href="mailto:contact@telleye.dz" className="hover:text-white/80 transition-colors">contact@telleye.dz</a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <svg className="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  <span>Algérie, Constantine</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-white/25">
-          <p>© 2026 TellEye — Université de Constantine 2. Tous droits réservés.</p>
-          <div className="flex items-center gap-5">
-            <Link to="#" className="hover:text-white/50 transition-colors">Confidentialité</Link>
-            <Link to="#" className="hover:text-white/50 transition-colors">Conditions</Link>
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-white/30">
+          <div className="flex items-center gap-2">
+            <div className="h-2 w-2 rounded-full bg-emerald-400/50" />
+            <p>© 2026 TellEye — Université de Constantine 2</p>
+          </div>
+          <div className="flex items-center gap-6">
+            <Link to="#" className="hover:text-emerald-300 transition-colors">Confidentialité</Link>
+            <Link to="#" className="hover:text-emerald-300 transition-colors">Conditions</Link>
           </div>
         </div>
       </div>

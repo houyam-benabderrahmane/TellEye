@@ -1,18 +1,20 @@
 import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { ArrowRight, MapPin, Clock, Mail, Phone } from 'lucide-react'
+import { ArrowRight, MapPin, Clock, Mail, Phone, ShieldCheck, GraduationCap } from 'lucide-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import sattBg from '../assets/satt.png'
+import heroSoil from '../assets/hero-soil.jpg'
 
 function Reveal({ children, delay = 0, className = '' }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const inView = useInView(ref, { once: true, margin: '-40px' })
   return (
-    <motion.div ref={ref}
-      initial={{ opacity: 0, y: 24 }}
+    <motion.div 
+      ref={ref}
+      initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -45,265 +47,214 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="relative min-h-screen overflow-hidden text-white antialiased" style={{ background: '#03090a' }}>
-
-      {/* ── bg ── */}
-      <div className="fixed inset-0 -z-10 pointer-events-none">
-        <img src={sattBg} alt="" className="absolute inset-0 h-full w-full object-cover object-center opacity-[0.45]"/>
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(120% 80% at 50% 0%, rgba(6,20,16,0.55) 0%, rgba(3,9,10,0.70) 60%, rgba(3,9,10,0.85) 100%)' }}/>
-        <div className="absolute inset-0 opacity-50" style={{ background: 'radial-gradient(60% 50% at 80% 30%, rgba(16,185,129,0.12) 0%, transparent 70%), radial-gradient(50% 50% at 10% 80%, rgba(5,150,105,0.10) 0%, transparent 70%)' }}/>
+    <div className="relative min-h-screen text-zinc-100 antialiased bg-[#020708]">
+      
+      {/* ── HERO BACKGROUND: Immersive Soil Texture Canopy ── */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <img 
+          src={heroSoil} 
+          alt="Soil texture background" 
+          className="absolute inset-0 h-full w-full object-cover object-center opacity-45 mix-blend-luminosity scale-105"
+        />
+        {/* Cinematic gradient masks: preserves texture details while anchoring interactive layers */}
+        <div className="absolute inset-0 bg-radial-gradient from-transparent via-[#020708]/70 to-[#020708] lg:via-[#020708]/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#020708]/90 via-transparent to-[#020708]" />
+        <div className="absolute inset-x-0 top-0 h-[600px] bg-gradient-to-b from-emerald-950/20 via-transparent to-transparent" />
+        
+        {/* Subtle structural grid line */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/[0.02] hidden lg:block" />
       </div>
 
       <Navbar lang={lang} onLangChange={setLang} />
 
-      {/* ══ HERO ══ */}
-      <section className="relative pt-32 pb-16">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-4 py-1.5 text-[10px] font-bold uppercase tracking-[0.22em] text-emerald-300"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(16,185,129,0.9)]"/>
-            Contactez-nous
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.8 }}
-            className="text-3xl font-black leading-[1.1] tracking-tight md:text-5xl"
-          >
-            Parlons de{' '}
-            <span className="bg-gradient-to-r from-emerald-300 via-emerald-400 to-emerald-600 bg-clip-text text-transparent">
-              vos sols.
-            </span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="mt-5 text-sm leading-relaxed text-white/45 max-w-xl mx-auto"
-          >
-            Notre équipe d'agronomes et de spécialistes en données satellitaires est là pour vous accompagner.
-          </motion.p>
-        </div>
-      </section>
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-40 pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+          
+          {/* ══ LEFT COLUMN: Context & Institutional Proofs ══ */}
+          <div className="lg:col-span-5 space-y-12 lg:sticky lg:top-40">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md border border-emerald-500/20 bg-emerald-500/5 text-xs font-medium text-emerald-400 tracking-wide mb-6">
+                <span className="h-1 w-1 rounded-full bg-emerald-400 animate-pulse" />
+                Bureau de Liaison
+              </div>
+              
+              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl leading-[1.08]">
+                Déployons la data spatiale au service de <span className="text-emerald-400/90 font-medium italic font-serif">vos terres</span>.
+              </h1>
+              
+              <p className="mt-6 text-base text-zinc-300 backdrop-blur-[2px] leading-relaxed max-w-md">
+                Notre équipe d'ingénieurs et de spécialistes en données satellitaires analyse vos parcelles pour concevoir des modèles prédictifs locaux.
+              </p>
+            </div>
 
-      {/* ══ MAIN GRID ══ */}
-      <section className="relative pb-28">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-8">
+            {/* Institutional Proof Points */}
+            <div className="pt-4 space-y-6 border-t border-zinc-800/60">
+              <div className="flex gap-4 group">
+                <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-950/80 border border-zinc-800 flex items-center justify-center transition-colors group-hover:border-emerald-500/30">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-zinc-100">Validation Algorithmique ASAL</h4>
+                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                    Données étalonnées en partenariat avec l'Agence Spatiale Algérienne pour une précision d'imagerie adaptée aux micro-climats locaux.
+                  </p>
+                </div>
+              </div>
 
-            {/* ── FORM ── */}
+              <div className="flex gap-4 group">
+                <div className="mt-1 flex-shrink-0 w-8 h-8 rounded-lg bg-zinc-950/80 border border-zinc-800 flex items-center justify-center transition-colors group-hover:border-emerald-500/30">
+                  <GraduationCap className="w-4 h-4 text-emerald-400" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-semibold text-zinc-100">R&D Université Constantine 2</h4>
+                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                    Collaboration continue sur l'optimisation des architectures de réseaux neuronaux appliquées à l'agriculture de précision au Maghreb.
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-zinc-950/60 backdrop-blur-sm border border-zinc-800/60 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <Clock className="w-4 h-4 text-zinc-400" />
+                  <span className="text-xs text-zinc-400 font-medium uppercase tracking-wider">Traitement des requêtes</span>
+                </div>
+                <span className="text-sm font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                  &lt; 48 Heures
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* ══ RIGHT COLUMN: High Fidelity Interactive Form ══ */}
+          <div className="lg:col-span-7">
             <Reveal>
-              <div className="rounded-3xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-sm p-8">
+              <div className="relative rounded-2xl border border-zinc-800 bg-zinc-950/40 backdrop-blur-xl p-8 lg:p-10 shadow-2xl">
                 {sent ? (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center h-full py-16 text-center"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex flex-col items-center justify-center py-20 text-center"
                   >
-                    <div className="mb-4 inline-flex h-14 w-14 items-center justify-center rounded-full bg-emerald-400/10 ring-1 ring-emerald-400/30">
-                      <svg viewBox="0 0 20 20" fill="none" className="w-7 h-7 text-emerald-400">
-                        <path d="M4 10l4 4 8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-emerald-950 text-emerald-400 border border-emerald-500/30">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="w-5 h-5">
+                        <polyline points="20 6 9 17 4 12" />
                       </svg>
                     </div>
-                    <h3 className="text-xl font-black text-white mb-2">Message envoyé !</h3>
-                    <p className="text-sm text-white/45 max-w-xs">
-                      Notre équipe vous répondra dans les 48h. Merci pour votre intérêt pour TelEye.
+                    <h3 className="text-lg font-bold text-white mb-2">Transmission Réussie</h3>
+                    <p className="text-sm text-zinc-400 max-w-sm leading-relaxed">
+                      Votre demande a été affectée à notre cellule technique. Un ingénieur conseil prendra contact sous 48h.
                     </p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={submit} className="space-y-5">
-                    <h2 className="text-lg font-black text-white mb-6">Envoyer une demande</h2>
+                  <form onSubmit={submit} className="space-y-6">
+                    <div>
+                      <h2 className="text-xl font-bold text-white">Formulaire d'accès</h2>
+                      <p className="text-xs text-zinc-400 mt-1">Veuillez renseigner vos paramètres professionnels pour l'ouverture de vos droits.</p>
+                    </div>
 
-                    {/* row 1 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Nom complet
-                        </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Nom complet</label>
                         <input
                           name="name" value={form.name} onChange={handle} required
-                          placeholder="ex. Ahmed Benali"
-                          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
+                          placeholder="Ahmed Benali"
+                          className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition"
                         />
                       </div>
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Institution / Entreprise
-                        </label>
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Institution / Entreprise</label>
                         <input
                           name="institution" value={form.institution} onChange={handle}
-                          placeholder="ex. ITGC Algérie"
-                          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
+                          placeholder="ITGC Algérie"
+                          className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition"
                         />
                       </div>
                     </div>
 
-                    {/* row 2 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Rôle / Poste
-                        </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Rôle / Poste</label>
                         <input
                           name="role" value={form.role} onChange={handle}
-                          placeholder="ex. Ingénieur agronome"
-                          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
+                          placeholder="Ingénieur agronome"
+                          className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition"
                         />
                       </div>
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Email
-                        </label>
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Adresse Email</label>
                         <input
                           name="email" value={form.email} onChange={handle} required type="email"
-                          placeholder="benali@example.dz"
-                          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
+                          placeholder="benali@domain.dz"
+                          className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition"
                         />
                       </div>
                     </div>
 
-                    {/* row 3 */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Téléphone
-                        </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Téléphone</label>
                         <input
                           name="phone" value={form.phone} onChange={handle}
-                          placeholder="+213 0XXXXXXX"
-                          className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
+                          placeholder="+213 (0) XXXXXXXX"
+                          className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition"
                         />
                       </div>
-                      <div>
-                        <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                          Type de demande
-                        </label>
-                        <select
-                          name="requestType" value={form.requestType} onChange={handle}
-                          className="w-full rounded-xl border border-white/[0.08] bg-[#0d1f18] px-4 py-3 text-sm text-white outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition"
-                        >
-                          {REQUEST_TYPES.map(r => <option key={r}>{r}</option>)}
-                        </select>
+                      <div className="space-y-2">
+                        <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Nature de l'analyse</label>
+                        <div className="relative">
+                          <select
+                            name="requestType" value={form.requestType} onChange={handle}
+                            className="w-full appearance-none rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition cursor-pointer"
+                          >
+                            {REQUEST_TYPES.map(r => <option key={r} className="bg-zinc-900">{r}</option>)}
+                          </select>
+                          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-zinc-500">
+                            <svg className="fill-current h-4 w-4" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
-                    {/* message */}
-                    <div>
-                      <label className="block text-[11px] font-semibold text-white/40 uppercase tracking-wider mb-1.5">
-                        Message
-                      </label>
+                    <div className="space-y-2">
+                      <label className="text-[11px] font-medium text-zinc-400 uppercase tracking-wider">Cahier des charges / Message</label>
                       <textarea
-                        name="message" value={form.message} onChange={handle} rows={5}
-                        placeholder="Comment nos données satellitaires peuvent-elles vous aider ?"
-                        className="w-full rounded-xl border border-white/[0.08] bg-white/[0.04] px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-emerald-400/40 focus:ring-1 focus:ring-emerald-400/20 transition resize-none"
+                        name="message" value={form.message} onChange={handle} rows={4}
+                        placeholder="Précisez ici les coordonnées ou la superficie de la zone d'étude..."
+                        className="w-full rounded-lg border border-zinc-800 bg-zinc-950/80 px-4 py-3 text-sm text-white placeholder-zinc-600 outline-none focus:border-emerald-500/50 focus:bg-zinc-950 transition resize-none"
                       />
                     </div>
 
-                    {/* submit */}
-                    <motion.button
-                      whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+                    <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-400 to-emerald-600 py-3.5 text-sm font-bold text-black shadow-[0_8px_30px_-8px_rgba(16,185,129,0.5)] transition hover:shadow-[0_12px_40px_-8px_rgba(16,185,129,0.7)]"
+                      className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-zinc-100 hover:bg-white text-zinc-950 py-3.5 text-sm font-semibold transition-all duration-200 active:scale-[0.99]"
                     >
-                      Envoyer la demande
-                      <ArrowRight className="w-4 h-4"/>
-                    </motion.button>
+                      Transmettre le dossier
+                      <ArrowRight className="w-4 h-4 stroke-[2.5]" />
+                    </button>
                   </form>
                 )}
               </div>
             </Reveal>
 
-            {/* ── RIGHT CARDS ── */}
-            <div className="flex flex-col gap-4">
-
-              {/* ASAL */}
-              <Reveal delay={0.1}>
-                <div className="rounded-3xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-sm p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-emerald-400/10 ring-1 ring-emerald-400/20 flex items-center justify-center">
-                      <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5 text-emerald-400">
-                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="1.5"/>
-                        <path d="M10 6v4l2.5 2.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-white mb-1">Partenariat ASAL</p>
-                      <p className="text-xs leading-relaxed text-white/40">
-                        Nos données sont validées par l'Agence Spatiale Algérienne (ASAL), garantissant
-                        une calibration satellite haute précision pour les conditions agricoles locales.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* Constantine 2 */}
-              <Reveal delay={0.15}>
-                <div className="rounded-3xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-sm p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 h-10 w-10 rounded-xl bg-emerald-400/10 ring-1 ring-emerald-400/20 flex items-center justify-center">
-                      <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5 text-emerald-400">
-                        <path d="M10 2L2 7v11h16V7L10 2z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-                        <path d="M7 18v-5h6v5" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="text-sm font-black text-white mb-1">Université Constantine 2</p>
-                      <p className="text-xs leading-relaxed text-white/40">
-                        Collaboration scientifique pour des modèles de machine learning avancés
-                        spécifiques à la région du Maghreb.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* Response time */}
-              <Reveal delay={0.2}>
-                <div className="rounded-3xl border border-emerald-400/20 bg-emerald-400/[0.05] backdrop-blur-sm p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Clock className="w-4 h-4 text-emerald-400"/>
-                    <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-emerald-400">
-                      Délai de réponse
-                    </p>
-                  </div>
-                  <p className="text-3xl font-black text-white mb-1">Sous 48h</p>
-                  <p className="text-xs text-white/35 leading-relaxed">
-                    Notre équipe d'agronomes examine chaque demande institutionnelle personnellement.
-                  </p>
-                </div>
-              </Reveal>
-
-              {/* Contact info */}
-              <Reveal delay={0.25}>
-                <div className="rounded-3xl border border-white/[0.07] bg-white/[0.025] backdrop-blur-sm p-6 space-y-4">
-                  <div className="flex items-center gap-3">
-                    <Mail className="w-4 h-4 text-emerald-400 flex-shrink-0"/>
-                    <div>
-                      <p className="text-[10px] text-white/30 uppercase tracking-wider">Email</p>
-                      <p className="text-sm font-semibold text-white">contact@telleye.dz</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <Phone className="w-4 h-4 text-emerald-400 flex-shrink-0"/>
-                    <div>
-                      <p className="text-[10px] text-white/30 uppercase tracking-wider">Téléphone</p>
-                      <p className="text-sm font-semibold text-white">+213 (0) 23 45 67 89</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <MapPin className="w-4 h-4 text-emerald-400 flex-shrink-0"/>
-                    <div>
-                      <p className="text-[10px] text-white/30 uppercase tracking-wider">Siège</p>
-                      <p className="text-sm font-semibold text-white">Cyberparc Sidi Abdellah, Alger</p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-
+            {/* Direct contact info strip */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 px-2">
+              <div className="flex items-center gap-3">
+                <Mail className="w-4 h-4 text-zinc-500 flex-shrink-0" />
+                <span className="text-xs font-mono text-zinc-400">contact@telleye.dz</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-zinc-500 flex-shrink-0" />
+                <span className="text-xs font-mono text-zinc-400">+213 23 45 67 89</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-4 h-4 text-zinc-500 flex-shrink-0" />
+                <span className="text-xs text-zinc-400 truncate">Sidi Abdellah, Alger</span>
+              </div>
             </div>
+
           </div>
         </div>
-      </section>
+      </main>
 
       <Footer lang={lang} />
     </div>
