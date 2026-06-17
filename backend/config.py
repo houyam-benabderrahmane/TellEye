@@ -7,7 +7,8 @@ class Settings(BaseSettings):
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
 
-    DATABASE_URL: str = "postgresql://postgres:123@localhost:5432/telleye_db"
+   
+    DATABASE_URL: str = "postgresql+pg8000://postgres:123@localhost:5432/telleye_db"
 
     SECRET_KEY: str = secrets.token_urlsafe(32)
     ALGORITHM: str = "HS256"
